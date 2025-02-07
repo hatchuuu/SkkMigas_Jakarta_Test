@@ -14,26 +14,32 @@ function algoritma2(n) {
     }
 }
 function algoritma3(n) {
-    for (let i = 1; i <= n; i++) {
-        let row = "";
+    let currentNumber = 1;
+    let increment = true;
 
-        if (i % 2 === 1) {
-            for (let j = 1; j <= i; j++) {
-                row += j;
-            }
-        } else {
-            for (let j = i; j > Math.floor(i / 2); j--) {
-                row += j;
-            }
-            for (let j = Math.floor(i / 2); j >= 1; j--) {
-                row += j;
+    for (let i = 1; i <= n; i++) {
+        let result = '';
+
+        for (let j = 1; j <= i; j++) {
+            result += currentNumber;
+
+            if (increment) {
+                currentNumber++;
+                if (currentNumber > 5) {
+                    currentNumber = 4;
+                    increment = false;
+                }
+            } else {
+                currentNumber--;
+                if (currentNumber < 1) {
+                    currentNumber = 2;
+                    increment = true;
+                }
             }
         }
-        console.log(row);
+        console.log(result);
     }
 }
-
-
 
 
 
