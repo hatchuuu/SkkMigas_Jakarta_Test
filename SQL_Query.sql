@@ -1,0 +1,41 @@
+SELECT
+    *
+FROM
+    barang
+WHERE
+    HARGA_SATUAN > 10000
+ORDER BY
+    HARGA_SATUAN ASC;
+
+SELECT
+    *
+FROM
+    pelanggan
+WHERE
+    NAMA LIKE '%g%';
+
+SELECT
+    t.KODE,
+    t.TANGGAL,
+    p.NAMA AS NAMA_PELANGGAN,
+    b.NAMA AS NAMA_BARANG,
+    t.JUMLAH_BARANG AS JUMLAH,
+    b.HARGA_SATUAN,
+    (t.JUMLAH_BARANG * b.HARGA_SATUAN) AS TOTAL
+FROM
+    transaksi t
+    INNER JOIN barang b ON t.KODE_BARANG = b.KODE
+    INNER JOIN pelanggan p ON t.KODE_PELANGGAN = p.KODE;
+
+SELECT
+    p.NAMA AS NAMA_PELANGGAN,
+    t.JUMLAH_BARANG AS JUMLAH,
+    (b.HARGA_SATUAN * t.JUMLAH_BARANG) AS TOTAL
+FROM
+    transaksi t
+    INNER JOIN barang b ON t.KODE_BARANG = b.KODE
+    INNER JOIN pelanggan p ON t.KODE_PELANGGAN = p.KODE
+ORDER BY
+    TOTAL DESC
+LIMIT
+    3;
